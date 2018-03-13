@@ -15,17 +15,17 @@ function [x,iter]=sor(A,b)
     end
 
     %% CONSTANT BEGIN %%
-    OMEGA = 1.25;
-    MAX_ITERATION = 1000;
-    EPS = 0.001;
+    MAX_ITERATION = 10000;
+    EPS = 1e-9;
     INITIAL_ERR=100;
     %% CONSTANT END %%
 
     iter = 0;
     x = ones(n,1);
+    omega = omegaOptimal(m, n);
     err = INITIAL_ERR;
 
-    while err > EPS & iter < MAX_ITERATION
+    while err > EPS && iter < MAX_ITERATION
         iter = iter + 1;
 
         for i = 1:n
@@ -37,7 +37,7 @@ function [x,iter]=sor(A,b)
             for j = 1:n
                 if i ~= j, sigma = sigma + A(i,j) * prev_x(j); end
             end
-            x(i) = (OMEGA * (b(i) - sigma)/A(i,i)) + ((1 - OMEGA) * prev_x(i));
+            x(i) = (omega * (b(i) - sigma)/A(i,i)) + ((1 - omega) * prev_x(i));
         end
 
         err = 0;
