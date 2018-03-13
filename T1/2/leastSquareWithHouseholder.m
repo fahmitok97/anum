@@ -27,9 +27,16 @@ function [x] = leastSquareWithHouseholder (A, b)
   [m, n] = size(A);
   x = zeros(n,1);
   
+  %permutate b
+  tmp = b;
+  for i = 1:m
+    b(i) = tmp(p(i));
+  endfor
+  
   %back subtitution
   Qb = Q' * b;
-  x(n) = Qb(n);
+  Qb
+  x(n) = Qb(n) / R(n,n);
   for i = n-1:-1:1
     x(i) = (Qb(i) - R(i, i+1:n) * x(i+1:n)) / R(i,i);
   endfor
