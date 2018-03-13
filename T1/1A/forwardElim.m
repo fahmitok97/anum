@@ -1,4 +1,4 @@
-function y = forward_elim(L, b)
+function y = forwardElim(L, b)
     [m,n] = size(L);
     % bandwidth dibawah diagonal utama
     q = bandwidth(L, 'lower');

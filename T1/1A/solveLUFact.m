@@ -1,4 +1,4 @@
-function [x] = solve_lufact(A, b)
+function [x] = solveLUFact(A, b)
     %% Expecting 2 arguments, a square matrix and a vector
     if (nargin ~= 2)
         print_usage ();
@@ -21,7 +21,7 @@ function [x] = solve_lufact(A, b)
             error('b must be in the same dimension as A')
     end
 
-    [L, U, P] = lufact_pivot(A) % LU factorization of A
-    y = forward_elim(L, P*b) % solve Ly = Pb;
-    x = backward_elim(U, y) % solve Ux = y;
+    [L, U, P] = luFactPivot(A) % LU factorization of A
+    y = forwardElim(L, P*b) % solve Ly = Pb;
+    x = backwardSub(U, y) % solve Ux = y;
 end

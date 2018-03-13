@@ -1,4 +1,4 @@
-function x = backward_elim(U, b)
+function x = backwardSub(U, b)
     [m,n] = size(U);
     % bandwidth diatas diagonal utama
     p = bandwidth(U, 'upper');

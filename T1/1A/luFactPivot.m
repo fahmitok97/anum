@@ -1,4 +1,4 @@
-function [L,U,P] = lufact_pivot(A)
+function [L,U,P] = luFactPivot(A)
 % LU factorization with partial pivoting
 
     [n,n] = size(A);
